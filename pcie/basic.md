@@ -12,7 +12,6 @@
 
 - PCIe分层
     - core
-        - 
     - transaction layer
         - 组TLP包
         - 可以乱序传输
@@ -41,3 +40,44 @@
         - 设备的BAR空间需要提供寄存器来触发FLR
         - VM退出时会触发FLR
         - 不会影响LTSSM状态机
+
+## extended config space
+- 扩展配置空间
+    - 64byte基本配置空间0x00~0x3F
+        - PCI/PCIe设备都支持
+    - **0x40~0xFF**扩展配置空间
+        - 存放**MSI/MSI-X中断机制**和电源管理相关capability
+    - **0x100~0xFFF**扩展配置空间
+        - 存放PCIe设备独有的capability
+
+- capability寄存器
+    - 单向链表结构
+    - capability pointer指向capability链表头
+    - 每个capability有唯一id
+
+- PCI express capability
+    - 存放和PCIe总线相关的信息
+    - cap id为0x10
+    - 组成
+        - device capability
+            - 能力 -> 支持的max_payload_size
+        - **device control**
+            - max_payload_size(bit[7:5]) -> 设置
+            - MRRS(bit[14:12])
+            - enable no snoop(bit[11])
+            - enable relaxed ordering(bit[4])
+        - device status
+            - 指示error状态
+        - **link capability**
+            - 描述链路属性
+            - supported link speed
+            - maximum link width -> x16
+            - ASPM
+        - link status
+            - 当前链路状态
+            - current link status[3:0]
+            - negotiated link width[9:4]
+        - link control
+            - link disable -> 写1会禁止PCIe链路
+        - slot capability
+        - slot status
