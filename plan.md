@@ -29,3 +29,8 @@
 	- riscv
 	- pcie
 
+- qemu
+	- PCIe device
+	- necessary component
+	- framework
+
