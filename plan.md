@@ -47,3 +47,5 @@
 	- esp32
 
 - project
+	- 参考b站做一个协议分析仪
+	- 可以解析spi/uart/i2c协议
