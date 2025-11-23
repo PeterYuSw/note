@@ -27,3 +27,7 @@ struct spi_transfer;
 struct spi_message;
 ```
 
+## userspace操作spi设备
+- spidev
+	- 无法收中断
+	- 无法使用内核机制

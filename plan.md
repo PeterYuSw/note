@@ -34,3 +34,16 @@
 	- necessary component
 	- framework
 
+## interest
+- 数电/数字信号处理
+
+- 嵌入式
+	- uart
+	- spi
+	- i2c
+	- gpio
+
+- 开发板
+	- esp32
+
+- project
