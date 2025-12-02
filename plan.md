@@ -1,6 +1,10 @@
 # plan
 
 ## task
+- os
+	- xv6 implementation in riscv
+	- mm
+
 - driver
 	- rdma
 		- uverbs
