@@ -4,7 +4,8 @@
 ![reg list](./pic/reg_list.png)
 
 ## 指令type
-![instruction format](./pic/instruction_type.png)
+![instruction type](./pic/instruction_type.png)
+![instruction format](./pic/instruction_format.png)
 - R type: 寄存器间操作指令
 - I type: load
 	- 从mem读到寄存器
