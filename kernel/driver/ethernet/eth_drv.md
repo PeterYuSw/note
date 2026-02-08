@@ -132,27 +132,54 @@ struct sk_buff {
 	atomic_t users; // refcount
 
 	// |headroom|data|tailroom|
+	//  ____  -> head
+	// |____|
+	// |	| -> data
+	// |	|
+	// |____| -> tail
+	// |	|
+	// |____| -> end
 	char *head; // buffer start
 	char *end; // buffer end
 	char *data; // data start
 	char *tail; // data end
 
-
 	// general field
 
-
 	// feature-specific field
-
 
 	// management functions field
 
 };
 ```
 
-- kernel协议栈传给driver
-    - 
-
-- Driver传给kernel协议栈
+- 操作函数
+```C
+// adjust headroom
+skb_reserve(struct sk_buff *skb, int len)
+{
+	skb->data += len;
+	skb->tail += len;
+}
+// add data to a buffer
+skb_put(struct sk_buff *skb, unsigned int len)
+{
+	skb->tail += len;
+	skb->len += len;
+}
+// add data to the start of a buffer
+skb_push(struct sk_buff *skb, unsigned int len)
+{
+	skb->data -= len;
+	skb->len += len;
+}
+// remove data from the start of a buffer
+skb_pull(struct sk_buff *skb, unsigned int len)
+{
+	skb->data += len;
+	skb->len -= len;
+}
+```
 
 ## 拆包
 - process
