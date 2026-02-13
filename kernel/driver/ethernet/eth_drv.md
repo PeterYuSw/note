@@ -115,6 +115,7 @@ napi_schedule(napi);
     - management functions
 
 - 定义
+![sk_buff](./pic/sk_buff.png)
 
 ```c
 struct sk_buff {
