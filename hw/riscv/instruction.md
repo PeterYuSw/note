@@ -7,7 +7,9 @@
 ![instruction type](./pic/instruction_type.png)
 ![instruction format](./pic/instruction_format.png)
 - R type: 寄存器间操作指令
+	- integer register-register operation
 - I type: load
+	- integer register-immediate instruction
 	- 从mem读到寄存器
 	- lw(load word)
 - S type: store
@@ -63,3 +65,14 @@
 	- 如果rs1 < imm，将rd设为1，否则为0
 	- imm符号扩展
 	- rs1和imm都被看做无符号数
+
+- srli
+	- ![srli](./pic/srli.png)
+	- 将rs1逻辑右移shamt个bit放入rd
+
+## R type指令
+- or
+	- rd = rs1 | rs2
+
+- xor
+	- rd = rs1 ^ rs2

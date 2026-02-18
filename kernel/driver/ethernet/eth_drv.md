@@ -4,7 +4,6 @@
 - basic
 	- 中断下半部，由top half通过napi_schedule触发
 
-
 - 基本数据结构
 
 ```c
