@@ -105,6 +105,39 @@ napi_schedule(napi);
 
 ```
 
+## down and reset
+### down
+```C
+// invoke process
+sudo ifconfig enp0s0 down
+- ioctl(SIOCSIFFLAGS)
+	- dev_ioctl(net/core/dev.c)
+		- dev_change_flags
+			// IFF_UP state changed
+			- if ((old_flags ^ flags) & IFF_UP) {
+				if (old_flags & IFF_UP)
+					__dev_close(dev);
+						- ops->ndo_stop()
+				else
+					ret = __dev_open(dev, extack);
+						- ops->ndo_open()
+			}
+```
+
+- ndo_stop
+	- igb_down
+		- disable RX in HW
+		- netif_carrier_off
+		- netif_tx_stop_all_queues
+		- disable TX in HW
+		- disable irq
+		- napi_synchronize
+		- napi_disable
+		- igb_update_stats
+		- clean TX ring: free TX buffer
+		- clean RX ring: dma_unmap and free RX buffer
+	- free all TX/RX queue resources
+
 ## sk_buff
 
 - field class
