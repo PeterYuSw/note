@@ -1,6 +1,6 @@
 # Ethernet driver
 
-## NAPI
+## 1. NAPI
 - basic
 	- 中断下半部，由top half通过napi_schedule触发
 
@@ -105,7 +105,7 @@ napi_schedule(napi);
 
 ```
 
-## down and reset
+## 2. down and reset
 ### down
 ```C
 // invoke process
@@ -138,7 +138,7 @@ sudo ifconfig enp0s0 down
 		- clean RX ring: dma_unmap and free RX buffer
 	- free all TX/RX queue resources
 
-## sk_buff
+## 3. sk_buff
 
 - field class
     - layout field
@@ -214,7 +214,7 @@ skb_pull(struct sk_buff *skb, unsigned int len)
 }
 ```
 
-## 拆包
+## 4. 拆包
 - process
 ```C
 ip_fragment
@@ -222,8 +222,8 @@ ip_fragment
 
 ```
 
-## 组包
+## 5. 组包
 
-## ref driver - intel
+## 6. ref driver - intel
 - basic
 	- Intel 1G、10G、100G网卡分别对应的的驱动是igb、ixgbe、ice
