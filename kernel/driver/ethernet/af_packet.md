@@ -10,6 +10,7 @@
 struct list_head ptype_all __read_mostly;	/* Taps */
 
 // global array of protocol handler
+// 全局数组保存了所有的protocol handler, 创建socket时会根据传入的family找到对应的create接口
 static const struct net_proto_family __rcu *net_families[NPROTO] __read_mostly;
 
 static const struct proto_ops packet_ops = {
@@ -64,7 +65,9 @@ SYSCALL_DEFINE3(socket, int, family, int, type, int, protocol)
 					- sock = sock_alloc();
 					- pf->create(net, sock, protocol, kern);
 					- packet_create(struct net *net, struct socket *sock, int protocol int kern)
+						// 赋值socket的协议操作函数
 						- sock->ops = &packet_ops;
+						// 协议对应的收包接口
 						- po->prot_hook.func = packet_rcv;
 						- __register_prot_hook(sk); // add to ptype_all
 							- dev_add_pack(&po->prot_hook);
