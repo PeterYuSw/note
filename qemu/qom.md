@@ -3,6 +3,7 @@
 ## basic
 - ObjectClass
     - The base for all classes
+
 ```C
 static const TypeInfo object_info = {
         .name = TYPE_OBJECT,
@@ -10,6 +11,13 @@ static const TypeInfo object_info = {
         .class_init = object_class_init,
         .abstract = true,
 };
+
+- 对象构造
+    - 类型的构造
+    - 类型的初始化
+    - 类对象的构造
+        - ```-device```
+    - realized
 ```
 
 ## class
@@ -34,6 +42,24 @@ type_initialize(TypeImpl *ti) // qom/object.c:337
 ```
 
 ## instance
+- 通过命令行传入```-device```
+- ```XXXState```
+
+- init
+```C
+device_init_func
+    - qdev_device_add
+    - object_new
+    - object_new_with_type
+    - object_initialize_with_type
+    - object_init_with_type
+        - if (ti->instance_init) {
+            ti->instance_init(obj);
+        }
+```
+
+## 属性
+
 
 ## type_init
 
