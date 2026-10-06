@@ -13,7 +13,10 @@
 	- ethernet
 		- ipv4 stack
 		- netlink
+			- userspace怎么通过这个和kernel space通信
 		- socket
+			- 机制
+			- userspace怎么调用的
 	- pcie
 	- common module
 		- mm
